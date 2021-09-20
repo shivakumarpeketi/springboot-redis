@@ -5,6 +5,7 @@ import com.agl.springbootredis.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,7 @@ public class SpringbootRedisApplication {
 	public ProductRepository productRepository;
 
 	@PostMapping()
+	@CachePut
 	public Product save(@RequestBody Product product){
 		return productRepository.save(product);
 	}
